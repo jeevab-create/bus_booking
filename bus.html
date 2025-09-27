@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BusGo - Select Your Seats</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="bus.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-bus"></i>
+                BusGo
+            </div>
+            <div class="cls-head-bus">
+            <div class="bus-type-chip" id="busTypeDisplay">
+                <i class="fas fa-snowflake"></i>
+                <span>AC Seater</span>
+            </div>
+            <button class="btn btn-secondary" id="backButton">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+    </div>
+        
+        <div class="bus-info-card">
+            <div class="bus-info-header">
+                <div>
+                    <div class="bus-name">
+                        <i class="fas fa-bus-alt"></i>
+                        <span id="busNameDisplay">Volvo Multi-Axle AC Seater</span>
+                    </div>
+                    <div class="bus-operator">Operated by RedBus Express</div>
+                </div>
+                <div class="bus-price">
+                    ₹<span id="totalPriceDisplay">1,250</span>
+                    <span>per seat</span>
+                </div>
+            </div>
+            <div class="bus-details">
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <div class="detail-text">
+                        <div class="detail-label">Route</div>
+                        <div class="detail-value" id="routeDisplay">Mumbai to Delhi</div>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="detail-text">
+                        <div class="detail-label">Date</div>
+                        <div class="detail-value" id="dateDisplay">25 May 2025</div>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="detail-text">
+                        <div class="detail-label">Departure</div>
+                        <div class="detail-value" id="departureDisplay">08:30 AM</div>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="detail-text">
+                        <div class="detail-label">Arrival</div>
+                        <div class="detail-value" id="arrivalDisplay">08:45 PM</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="seat-selection">
+                <h2 class="section-title">
+                    <i class="fas fa-chair"></i>
+                    Select Your Seats
+                </h2>
+
+                <div class="seat-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--white); border: 1px solid var(--light-gray);"></div>
+                        <span>Available</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--accent);"></div>
+                        <span>Male Occupied</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--danger);"></div>
+                        <span>Female Occupied</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--primary);"></div>
+                        <span>Your Selection</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--gray);"></div>
+                        <span>Booked</span>
+                    </div>
+                </div>
+
+                <div class="bus-layout" id="busLayout">
+                    <!-- Bus seats will be dynamically inserted here -->
+                </div>
+
+                <div class="selected-seats">
+                    <h3>
+                        <i class="fas fa-check-circle"></i>
+                        Selected Seats: <span id="selectedCount">0</span>
+                    </h3>
+                    <div class="selected-seats-list" id="selectedSeatsList">
+                        <!-- Selected seats will appear here -->
+                    </div>
+                </div>
+
+                <div class="passenger-details">
+                    <h2 class="section-title">
+                        <i class="fas fa-user-friends"></i>
+                        Passenger Details
+                    </h2>
+                    <form id="passengerForm">
+                        <div class="passenger-form" id="passengerFormFields">
+                            <!-- Passenger fields will be dynamically added here -->
+                        </div>
+                    </form>
+                </div>
+
+                <div class="boarding-points">
+                    <div class="point-card" id="boardingPointsContainer">
+                        <!-- Boarding points will be dynamically inserted here -->
+                    </div>
+                    <div class="point-card" id="droppingPointsContainer">
+                        <!-- Dropping points will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" id="backButton">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    <div class="price-summary">
+                        <div class="price-item">
+                            <span class="price-label">Seats</span>
+                            <span class="price-value" id="priceSeatCount">0</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Total</span>
+                            <span class="total-price">₹<span id="priceTotal">0</span></span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="proceedButton" disabled>
+                        Proceed to Payment <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <h2 class="summary-title">
+                    <i class="fas fa-receipt"></i>
+                    Booking Summary
+                </h2>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Bus Type:</span>
+                    <span class="summary-value" id="summaryBusType">AC Seater</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Operator:</span>
+                    <span class="summary-value">RedBus Express</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Date:</span>
+                    <span class="summary-value" id="summaryDate">25 May 2025</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Departure:</span>
+                    <span class="summary-value" id="summaryDeparture">08:30 AM</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Arrival:</span>
+                    <span class="summary-value" id="summaryArrival">08:45 PM</span>
+                </div>
+                
+                <div class="summary-seats" id="summarySeats">
+                    <!-- Selected seats will appear here -->
+                    <div class="summary-item" style="justify-content: center;">
+                        <span class="summary-label">No seats selected</span>
+                    </div>
+                </div>
+                
+                <div class="summary-item summary-total">
+                    <span class="summary-label">Total:</span>
+                    <span class="summary-value">₹<span id="summaryTotal">0</span></span>
+                </div>
+                
+                <div style="margin-top: 2rem; font-size: 0.8rem; color: var(--gray); text-align: center;">
+                    <i class="fas fa-lock"></i> Secure SSL Encryption
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">Seat selected successfully!</span>
+    </div>
+
+    <div class="fab" id="helpFab">
+        <i class="fas fa-question"></i>
+    </div>
+    <script src="bus.js"></script>
+</body> </html>
+<!-- setTimeout(() => {
+    window.location.href = 'payment.html';
+}, 3000); -->
