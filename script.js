@@ -275,17 +275,17 @@ amenities: ['WiFi', 'Entertainment', 'Meals', 'Charging Point', 'Massage Seats',
 ];
 
 // Check if user is logged in on page load
-document.addEventListener('DOMContentLoaded', () => {
-fetch('php/check_login.php')
-.then(response => response.json())
-.then(data => {
-    if (data.loggedIn) {
-        currentUser = data.user;
-        document.getElementById('userText').textContent = currentUser;
-    }
-})
-.catch(error => console.error('Error checking login status:', error));
-});
+// document.addEventListener('DOMContentLoaded', () => {
+// fetch('php/check_login.php')
+// .then(response => response.json())
+// .then(data => {
+//     if (data.loggedIn) {
+//         currentUser = data.user;
+//         document.getElementById('userText').textContent = currentUser;
+//     }
+// })
+// .catch(error => console.error('Error checking login status:', error));
+// });
 let filteredBuses ;
 // User state
 let currentUser = null;
@@ -1012,42 +1012,64 @@ const formData = new FormData();
 formData.append('email', email);
 formData.append('password', password);
 formData.append('rememberMe', rememberMe);
-
-// Make AJAX request
-fetch('login.php', {
-method: 'POST',
-body: formData
-})
-.then(response => response.json())
-.then(data => {
-button.classList.remove('loading');
-
-if (data.success) {
-    showMessage('Login successful!', 'success');
-    currentUser = data.user.name;
-    document.getElementById('userText').textContent = currentUser;
-    closeAuthModal();
-    
-    // Update UI as needed
-    // You might want to redirect or refresh parts of the page
-} else {
-    if (data.errors) {
-        // Display validation errors
-        let errorMessage = data.message + '\n\n';
-        for (const [field, message] of Object.entries(data.errors)) {
-            errorMessage += `${field}: ${message}\n`;
-        }
-        showMessage(errorMessage, 'error');
-    } else {
-        showMessage(data.message, 'error');
+ if (email === "Jeeva123@gmail.com" && password === "Jeeva@123") {
+        // Show loading state
+        button.classList.add('loading');
+        
+        // Simulate successful login
+        setTimeout(() => {
+            button.classList.remove('loading');
+            showMessage('Login successful!', 'success');
+            currentUser = "Jeeva";
+            document.getElementById('userText').textContent = currentUser;
+            closeAuthModal();
+            
+            //redirect after login
+            const redirectUrl = localStorage.getItem('redirectAfterLogin');
+            if (redirectUrl) {
+                localStorage.removeItem('redirectAfterLogin');
+                window.location.href = redirectUrl;
+            }
+        }, 1000);
+        return;
     }
+else{
+// Make AJAX request
+// fetch('login.php', {
+// method: 'POST',
+// body: formData
+// })
+// .then(response => response.json())
+// .then(data => {
+// button.classList.remove('loading');
+
+// if (data.success) {
+//     showMessage('Login successful!', 'success');
+//     currentUser = data.user.name;
+//     document.getElementById('userText').textContent = currentUser;
+//     closeAuthModal();
+    
+//     // Update UI as needed
+//     // You might want to redirect or refresh parts of the page
+// } else {
+//     if (data.errors) {
+//         // Display validation errors
+//         let errorMessage = data.message + '\n\n';
+//         for (const [field, message] of Object.entries(data.errors)) {
+//             errorMessage += `${field}: ${message}\n`;
+//         }
+//         showMessage(errorMessage, 'error');
+//     } else {
+//         showMessage(data.message, 'error');
+//     }
+// }
+// })
+// .catch(error => {
+// button.classList.remove('loading');
+// showMessage('An error occurred. Please try again.', 'error');
+// console.error('Error:', error);
+// });
 }
-})
-.catch(error => {
-button.classList.remove('loading');
-showMessage('An error occurred. Please try again.', 'error');
-console.error('Error:', error);
-});
 }
 // Signup Form Handler
 // Signup Form Handler
